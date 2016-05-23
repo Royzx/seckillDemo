@@ -71,5 +71,6 @@
             endTime:${seckill.endTime.time}
         });
     });
+
 </script>
 </html>

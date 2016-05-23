@@ -3,7 +3,7 @@
 var seckill = {
     //封装秒杀相关ajax的url
     URL: {
-        now :function () {
+        now: function () {
             return "/seckill/time/now";
         }
     },
@@ -16,32 +16,32 @@ var seckill = {
             return false;
         }
     },
-    handleSeckillkill:function () {
+    handleSeckillkill: function () {
         //处理秒杀逻辑
 
     },
-    countdown:function (seckillId, nowTime, startTime, endTime) {
+    countdown: function (seckillId, nowTime, startTime, endTime) {
         console.log("进入coutdown方法");
-        console.log("nowTime:"+nowTime);
-        console.log("startTime"+startTime);
-        console.log("endTime"+endTime);
+        console.log("nowTime:" + nowTime);
+        console.log("startTime" + startTime);
+        console.log("endTime" + endTime);
 
         var seckillBox = $('#seckill-box');
-        if (nowTime > endTime){
+        if (nowTime > endTime) {
             seckillBox.html('秒杀结束');
-        }else if (nowTime < startTime){
+        } else if (nowTime < startTime) {
             //秒杀倒计时,计时时间绑定
             console.log('进入倒计时判断');
-            var killTime = new Date(startTime+1000);
-            seckillBox.countdown(killTime,function(event){
+            var killTime = new Date(startTime + 1000);
+            seckillBox.countdown(killTime, function (event) {
                 var format = event.strftime('秒杀倒计时：%D天 %H时 %M分 %S秒');
                 seckillBox.html(format);
                 //时间完成后回调函数
-            }).on('finish.countdown',function () {
+            }).on('finish.countdown', function () {
                 //获取秒杀地址，控制显示逻辑，执行秒杀
                 seckill.handleSeckillkill();
             });
-        }else{
+        } else {
             seckill.handleSeckillkill();
         }
     },
@@ -82,11 +82,11 @@ var seckill = {
             var startTime = params['startTime'];
             var endTime = params['endTime'];
             var seckillId = params['seckillId'];
-            $.get(seckill.URL.now(),{},function (result) {
-                if (result && result['success']){
+            $.get(seckill.URL.now(), {}, function (result) {
+                if (result && result['success']) {
                     var nowTime = result['data'];
                     //时间
-                    seckill.countdown(seckillId,nowTime,startTime,endTime);
+                    seckill.countdown(seckillId, nowTime, startTime, endTime);
                 }
             });
         }
