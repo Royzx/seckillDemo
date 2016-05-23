@@ -59,7 +59,7 @@ public class SeckillController {
             method = RequestMethod.POST,
             produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public SeckillResult<Exposer> exposer(Long seckillId) {
+    public SeckillResult<Exposer> exposer(@PathVariable Long seckillId) {
         SeckillResult<Exposer> result;
 
         try {
@@ -80,7 +80,7 @@ public class SeckillController {
                                                    @PathVariable("md5") String md5,
                                                    @CookieValue(value = "killphone", required = false) Long phone) {
         if (phone == null) {
-            return new SeckillResult<SeckillExecution>(false, "用户为注册");
+            return new SeckillResult<SeckillExecution>(false, "用户未注册");
         }
 
         try {
@@ -102,6 +102,7 @@ public class SeckillController {
 
 
     @RequestMapping(value = "/time/now", method = RequestMethod.GET)
+    @ResponseBody
     public SeckillResult<Long> time() {
         Date now = new Date();
         return new SeckillResult<Long>(true, now.getTime());

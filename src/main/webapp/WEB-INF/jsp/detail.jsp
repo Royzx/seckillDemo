@@ -41,6 +41,7 @@
             </div>
 
             <div class="modal-footer">
+                <!--验证信息-->
                 <span id="killPhoneMessage" class="glyphicon"></span>
                 <button type="button" id="killPhoneBtn" class="btn btn-success">
                     <span class="glyphicon glyphicon-phone"></span>
@@ -59,13 +60,13 @@
 
 <!--使用CDN 获取公共js-->
 <script src="http://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script src="http://cdn.bootcss.com/jquery-countdown/2.1.0/jquery.countdown.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery.countdown/2.1.0/jquery.countdown.min.js"></script>
 <script src="/resources/script/seckill.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
         //使用EL表达式传入参数
         seckill.detail.init({
-            seckillId:${seckill.id},
+            seckillId:${seckill.seckillId},
             startTime:${seckill.startTime.time},//毫秒
             endTime:${seckill.endTime.time}
         });
