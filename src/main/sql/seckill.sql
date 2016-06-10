@@ -10,14 +10,14 @@ CREATE PROCEDURE execute_seckill
   BEGIN
     DECLARE insert_count int DEFAULT 0;
     START TRANSACTION ;
-    insert ignore into success_killed
+    insert ignore into success_seckilled
       (seckill_id,user_phone,create_time)
       values (v_seckill_id,v_phone,v_kill_time);
     select row_count() into insert_count;
     IF (insert_count = 0) THEN
       ROLLBACK ;
       set r_result = -1;
-    ELSEIF (inset_count < 0) THEN
+    ELSEIF (insert_count < 0) THEN
       ROLLBACK ;
       set r_result = -2;
     ELSE

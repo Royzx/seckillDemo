@@ -5,6 +5,7 @@ import org.seckill.entity.Seckill;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 59215_000 on 2016/5/11.
@@ -33,4 +34,10 @@ public interface SeckillDao {
      * @return
      */
     List<Seckill> queryAll(@Param("offet") int offet, @Param("limit") int limit);
+
+    /**
+     * 通过存储过程执行秒杀
+     * @param paramMap
+     */
+    void killByProcedure(Map<String,Object> paramMap);
 }
